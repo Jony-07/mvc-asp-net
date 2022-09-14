@@ -1,19 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ticketEccommerce.Data;
+﻿
+
+using Microsoft.AspNetCore.Mvc;
+using ticketEccommerce.Data.Services;
 
 namespace ticketEccommerce.Controllers
 {
     public class ActorsController : Controller
     {
-        private readonly AppDBContext _context;
+        private readonly IActorsService _service;
 
-        public ActorsController(AppDBContext context)
+        public ActorsController(IActorsService service)
         {
-            _context = context;
+            _service = service;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var data = _context.Actors.ToList();
+            var data = await _service.GetAll();
             return View(data);
         }
     }

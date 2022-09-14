@@ -2,12 +2,16 @@ using FluentAssertions.Common;
 using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using ticketEccommerce.Data;
+using ticketEccommerce.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDBContext>(options => 
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+
+builder.Services.AddScoped<IActorsService, ActorsService>();
+
 builder.Services.AddControllersWithViews();
 
 
