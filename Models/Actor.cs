@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ticketEccommerce.Data.Base;
 
 namespace ticketEccommerce.Models
 {
-    public class Actor
+    public class Actor : IEntityBase
     {
         [Key]
         public int Id { get; set; }

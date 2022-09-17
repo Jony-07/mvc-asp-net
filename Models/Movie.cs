@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ticketEccommerce.Data.Base;
 using ticketEccommerce.Models.Data.Enums;
 
 namespace ticketEccommerce.Models
 {
-    public class Movie
+    public class Movie:IEntityBase
     {
         [Key]
         public int Id { get; set; }

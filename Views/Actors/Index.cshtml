@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-md-8 offset-md-2">
-        <table class="table" >
+        <table id="example" class="table" >
             <thead>
                  <tr class="text-center"><th>@Html.DisplayNameFor(model => model.ProfilePictureURL)</th>
                  <th>@Html.DisplayNameFor(model => model.FullName)</th>
@@ -42,3 +42,11 @@
         <i class="bi bi-plus-cicle"></i> Add New
     </a>
 </div>
+
+                      @section Scripts{ 
+    <script>
+      $(document).ready(function () {
+    $('#example').DataTable();
+});
+    </script>
+}

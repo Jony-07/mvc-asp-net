@@ -11,7 +11,8 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
 builder.Services.AddScoped<IActorsService, ActorsService>();
-
+builder.Services.AddScoped<IProducersService, ProducersService>();
+builder.Services.AddScoped<IMoviesService, MoviesService>();
 builder.Services.AddControllersWithViews();
 
 
