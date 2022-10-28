@@ -3,6 +3,7 @@ using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using ticketEccommerce.Data;
 using ticketEccommerce.Data.Services;
+using ticketEccommerce.Data.Cart;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,9 +14,14 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 builder.Services.AddScoped<IActorsService, ActorsService>();
 builder.Services.AddScoped<IProducersService, ProducersService>();
 builder.Services.AddScoped<IMoviesService, MoviesService>();
+builder.Services.AddScoped<IOrdersService, OrdersService>();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+
 builder.Services.AddControllersWithViews();
 
-
+builder.Services.AddSession();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,6 +36,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 
