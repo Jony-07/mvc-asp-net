@@ -1,11 +1,13 @@
 ﻿
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ticketEccommerce.Data.Services;
 using ticketEccommerce.Models;
 
 namespace ticketEccommerce.Controllers
 {
+    [Authorize]
     public class ActorsController : Controller
     {
         private readonly IActorsService _service;
@@ -14,6 +16,7 @@ namespace ticketEccommerce.Controllers
         {
             _service = service;
         }
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var data = await _service.GetAllAsync();
@@ -37,7 +40,7 @@ namespace ticketEccommerce.Controllers
             return View(actor);
 
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Details (int id)
         {
             var actorDetails = await _service.GetByIdAsync(id);
